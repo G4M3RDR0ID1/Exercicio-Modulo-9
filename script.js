@@ -3,7 +3,7 @@
 //pegar a lista de clientes para manipular
 const listaDeCliente = document.getElementById("listaCliente");
 //pegar o endpoint "Servidor-BackEnd"
-const url = "https://crudcrud.com/api/3efae9a0b4064822a20d45d1e55dd336/CadastroCliente"
+const url = "https://crudcrud.com/api/36646ad954d845f6a4803db335c2d964/CadastroCliente"
 
 //Estabelecer conexão
 fetch(url)
@@ -17,11 +17,11 @@ fetch(url)
 
         linhaNome.innerHTML = `${cadastro.nome}`;
         linhaEmail.innerHTML = `${cadastro.email}`;
-        botao.innerHTML= `<button type="button" onclick="excluirCadastro('${cadastro._id}',${linha})">Excluir</button>`;
+        botao.innerHTML= `<button type="button" onclick="excluirCadastro('${cadastro._id}', this)">Excluir</button>`;
 
-        listaDeCliente.appendChild(linhaNome);
-        listaDeCliente.appendChild(linhaEmail);
-        listaDeCliente.appendChild(botao);
+        linha.appendChild(linhaNome);
+        linha.appendChild(linhaEmail);
+        linha.appendChild(botao);
         listaDeCliente.appendChild(linha);
     });
 })
@@ -52,7 +52,7 @@ document.getElementById("cadastrar").addEventListener("click", ()=>{
 
         linhaNome.innerHTML = `${novoCadastro.nome}`
         linhaEmail.innerHTML = `${novoCadastro.email}`
-        botao.innerHTML =  `<button type="button" onclick="excluirCadastro('${novoCadastro._id}', ${linha})">Excluir</button>`;
+        botao.innerHTML =  `<button type="button" onclick="excluirCadastro('${novoCadastro._id}', this)">Excluir</button>`;
 
         linha.appendChild(linhaNome);
         linha.appendChild(linhaEmail);
@@ -71,6 +71,6 @@ fetch(`${url}/${_id}`, {
             method: "DELETE",       
         })    
         .then(()=>{
-           linha.parentElement.remove(); 
+           linha.parentElement.parentElement.remove(); 
         })
 }
